@@ -352,7 +352,7 @@ a {
     background-color: var(--footer-bg);
     color: #FFFFFF;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start; 
     padding: 40px 0;
     position: relative; 
@@ -361,7 +361,7 @@ a {
 }
 
 .footer-contact {
-    width: 450px;
+    width: 772px;
     padding: 30px 48px;
     display: flex;
     flex-direction: column;
