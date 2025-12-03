@@ -672,17 +672,193 @@
             Yveline
         </div>
     </footer>
-
+    
     <script>
+        /* --- 3. GÜNCELLENMİŞ JAVASCRIPT --- */
+
+        // İkon değiştirme işlevi (Footer için)
         function toggleIcon(iconElement, className) {
             iconElement.classList.toggle('far');
             iconElement.classList.toggle('fas');
             iconElement.classList.toggle(className);
         }
+
+        // --- MEGA MENÜ DİNAMİK İÇERİK VERİSİ ---
+        const menuData = {
+            // SAĞLIK + WELLNESS verisi
+            saglik: {
+                // Alt kategori (submenu) verisi. İlk eleman varsayılan olarak aktif olacaktır.
+                fitness: [
+                    // Resimlerinizi buraya ekledim: image_6478e5.png, Rectangle 3.jpg, vs.
+                    { img: 'Rectangle 3.jpg', title: 'Yoga Sınıflarına Katılmanız İçin 10 Sebep!' },
+                    { img: 'placeholder_fitness_2.jpg', title: 'Ağırlık Kaldırmanın Vücudunuza Etkileri' },
+                    { img: 'placeholder_fitness_3.jpg', title: 'Şehrinizdeki En İyi Spor Salonları' },
+                ],
+                saglik: [
+                    { img: 'placeholder_saglik_1.jpg', title: 'Doğal Yollarla Bağışıklık Nasıl Güçlendirilir?' },
+                    { img: 'placeholder_saglik_2.jpg', title: 'Kış Aylarında Cilt Bakım Rutini' },
+                    { img: 'placeholder_saglik_3.jpg', title: 'D Vitamini Eksikliği ve Tedavi Yöntemleri' },
+                ],
+                wellness: [
+                    { img: 'Rectangle 4.jpg', title: 'Meditasyonunuzda Yararlanabileceğiniz Teknikler' },
+                    { img: 'Rectangle 5.jpg', title: 'Anksiyeteyle Baş Etmenin Yolları' },
+                    { img: 'placeholder_wellness_3.jpg', title: 'Daha İyi Bir Uyku İçin İpuçları' },
+                ],
+                iliskiler: [
+                    { img: 'placeholder_iliskiler_1.jpg', title: 'Sağlıklı İlişki Kurmanın Sırları' },
+                    { img: 'placeholder_iliskiler_2.jpg', title: 'İletişim Engellerini Aşmak' },
+                    { img: 'placeholder_iliskiler_3.jpg', title: 'Zor Zamanlarda Destek Olmak' },
+                ],
+                diy: [
+                    { img: 'placeholder_diy_1.jpg', title: 'Kendi Doğal Cilt Maskeni Yap!' },
+                    { img: 'placeholder_diy_2.jpg', title: 'Ev Yapımı Oda Kokusu Tarifleri' },
+                    { img: 'placeholder_diy_3.jpg', title: 'Eski Kıyafetleri Değerlendirme Yolları' },
+                ],
+                bilissel: [
+                    { img: 'placeholder_bilissel_1.jpg', title: 'Odaklanmayı Artıran Beyin Egzersizleri' },
+                    { img: 'placeholder_bilissel_2.jpg', title: 'Stres Yönetimi ve Hafıza Teknikleri' },
+                    { img: 'placeholder_bilissel_3.jpg', title: 'Dijital Detoks ile Zihinsel Dinlenme' },
+                ]
+            },
+
+            // YAŞAM + STİL verisi
+            yasam: {
+                giysiler: [
+                    { img: 'placeholder_jeans.jpg', title: 'Doğru Kot Pantolonu Seçmek İçin İpuçları' },
+                    { img: 'placeholder_yasam_2.jpg', title: 'Yeni Moda Trendleri ve Kombin Önerileri' },
+                    { img: 'placeholder_yasam_3.jpg', title: 'Sürdürülebilir Modaya Geçiş Rehberi' },
+                ],
+                bakim: [
+                    { img: 'placeholder_siyah.jpg', title: 'Yaz Tatilinde Yanınıza Almanız Gereken 5 Şey' },
+                    { img: 'placeholder_bakim_2.jpg', title: 'Cilt Tipine Uygun Temizleyici Seçimi' },
+                    { img: 'placeholder_bakim_3.jpg', title: 'Makyaj Fırçalarını Temizleme Kılavuzu' },
+                ],
+                ipucu: [
+                    { img: 'placeholder_gozluk.jpg', title: 'Güneş Gözlüğü Seçiminde Uzmana Danışın!' },
+                    { img: 'placeholder_ipucu_2.jpg', title: 'Zaman Yönetimi İçin En İyi 5 Uygulama' },
+                    { img: 'placeholder_ipucu_3.jpg', title: 'İş Görüşmesi İçin Hazırlık Aşamaları' },
+                ],
+                seyahat: [
+                    { img: 'placeholder_seyahat_1.jpg', title: 'Avrupa’nın En Romantik 10 Şehri' },
+                    { img: 'placeholder_seyahat_2.jpg', title: 'Uçakta Daha Rahat Seyahat Etme Yolları' },
+                    { img: 'placeholder_seyahat_3.jpg', title: 'Sırt Çantalı Gezginler İçin Bütçe Rehberi' },
+                ],
+            },
+
+            // EV + EĞLENCE verisi
+            eglence: {
+                dekorasyon: [
+                    { img: 'placeholder_dekorasyon.jpg', title: 'Evinizin Atmosferini Değiştirecek Dekor Fikirleri' },
+                    { img: 'placeholder_eglence_2.jpg', title: 'Küçük Alanlar İçin Depolama Çözümleri' },
+                    { img: 'placeholder_eglence_3.jpg', title: 'Bitkilerle Evinizi Canlandırma Rehberi' },
+                ],
+                eglence: [
+                    { img: 'placeholder_eğlence.jpg', title: 'Evde Eğlenmek İçin Yapabileceğiniz Aktiviteler' },
+                    { img: 'placeholder_eğlence_2.jpg', title: 'Arkadaşlarınızla Oynayabileceğiniz Masa Oyunları' },
+                    { img: 'placeholder_eğlence_3.jpg', title: 'Yeni Bir Hobi Edinmek İçin İlk Adımlar' },
+                ],
+                tarifler: [
+                    { img: 'placeholder_yemek.jpg', title: 'Omega 3 Deposu Somonu Pişirmenin 5 Pratik Yolu!' },
+                    { img: 'placeholder_tarifler_2.jpg', title: 'Vegan Mutfağının En Lezzetli 7 Tarifi' },
+                    { img: 'placeholder_tarifler_3.jpg', title: 'Hızlı ve Sağlıklı Atıştırmalıklar' },
+                ]
+            }
+        };
+
+        // --- ANA MENÜ İŞLEVCİLERİ ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuItems = document.querySelectorAll('.menu__item');
+
+            // Kart HTML'i oluşturma fonksiyonu
+            const createCardHtml = (item) => `
+                <div class="content-card">
+                    <img src="${item.img}" alt="${item.title}">
+                    <p>${item.title}</p>
+                </div>
+            `;
+
+            // İçerik güncelleme fonksiyonu
+            const updateFeaturedContent = (menuId, categoryId) => {
+                const wrapper = document.querySelector(`#${menuId}-content`);
+                if (!wrapper || !menuData[menuId] || !menuData[menuId][categoryId]) return;
+
+                const content = menuData[menuId][categoryId];
+                let html = '';
+                content.forEach(item => {
+                    html += createCardHtml(item);
+                });
+                wrapper.innerHTML = html;
+            };
+
+            // Varsayılan içeriği yükle (Her menü açıldığında ilk alt kategori aktif gelsin)
+            menuItems.forEach(menuItem => {
+                const menuId = menuItem.dataset.menu;
+                const firstSubCategory = menuItem.querySelector('.sub-categories li');
+                
+                if (firstSubCategory) {
+                    const firstCategoryId = firstSubCategory.dataset.category;
+                    // İlk açılışta içeriği yükle
+                    updateFeaturedContent(menuId, firstCategoryId);
+                    
+                    // Varsayılan olarak ilk kategori linkini kalınlaştır
+                    const firstLink = firstSubCategory.querySelector('.menu__link');
+                    if (firstLink) {
+                        firstLink.style.fontWeight = '700'; // JS ile ilkini kalın yap
+                    }
+                }
+            });
+
+
+            // --- ETKİLEŞİM İŞLEVCİLERİ ---
+            
+            menuItems.forEach(menuItem => {
+                const menuId = menuItem.dataset.menu;
+                const subCategoryLinks = menuItem.querySelectorAll('.menu__link');
+
+                subCategoryLinks.forEach(link => {
+                    // Alt kategori linklerine hover ekleme
+                    link.addEventListener('mouseenter', (event) => {
+                        const currentMenu = event.target.closest('.menu__item');
+                        const currentMenuId = currentMenu.dataset.menu;
+                        const categoryId = event.target.closest('li').dataset.category;
+
+                        // Önce ana menü içindeki tüm alt linklerin kalınlığını sıfırla
+                        const allLinks = currentMenu.querySelectorAll('.menu__link');
+                        allLinks.forEach(l => l.style.fontWeight = '400');
+                        
+                        // Sadece hover yapılan linki kalınlaştır
+                        event.target.style.fontWeight = '700';
+
+                        // Sağdaki kartları güncelle
+                        updateFeaturedContent(currentMenuId, categoryId);
+                    });
+                });
+                
+                // Ana menü öğesine hover girince yapılacaklar (CSS hallediyor, bu kısım sadece kalınlık ayarı için gerekli)
+                menuItem.addEventListener('mouseenter', () => {
+                    // Hover'a girildiğinde ilk alt kategoriyi tekrar aktif et (eğer mouse alt menüden çıkıp ana menüye dönerse diye)
+                    const firstSubCategory = menuItem.querySelector('.sub-categories li');
+                    if (firstSubCategory) {
+                         const firstLink = firstSubCategory.querySelector('.menu__link');
+                         const currentMenuId = menuItem.dataset.menu;
+                         const firstCategoryId = firstSubCategory.dataset.category;
+
+                         // Tüm linklerin kalınlığını sıfırla
+                         menuItem.querySelectorAll('.menu__link').forEach(l => l.style.fontWeight = '400');
+                         
+                         // İlk linki kalınlaştır ve içeriği yükle
+                         firstLink.style.fontWeight = '700';
+                         updateFeaturedContent(currentMenuId, firstCategoryId);
+                    }
+                });
+
+            });
+        });
     </script>
 
 </body>
 
 </html>
+
 
 
